@@ -1,0 +1,12 @@
+
+<% if defined?(@description) -%>
+#
+# <%= @description %>
+#
+<% end -%>
+Autochanger {
+  Name = <%= @autochanger_name %>
+  Device = <%= @devices.join(',') %>
+  Changer Command = "<%= @command %>"
+  Changer Device = <%= @device %>
+}

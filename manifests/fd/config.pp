@@ -11,7 +11,7 @@ class bacula::fd::config inherits bacula::fd {
     mode    => '0640',
   }
 
-  concat::fragment{ "/etc/bacula/bacula-fd.conf base conf":
+  concat::fragment{ '/etc/bacula/bacula-fd.conf base conf':
     target  => '/etc/bacula/bacula-fd.conf',
     order   => '00',
     content => template("${module_name}/fd/baculafd.erb"),

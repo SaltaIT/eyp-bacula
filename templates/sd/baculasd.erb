@@ -1,0 +1,14 @@
+#
+# puppet managed file
+#
+
+Storage {
+  Name = <%= @sdname %>
+  SDPort = <%= @port %>
+  WorkingDirectory = "<%= scope.lookupvar('bacula::params::fd_workdir') %>"
+  Pid Directory = "<%= scope.lookupvar('bacula::params::fd_pid') %>"
+  Maximum Concurrent Jobs = <%= @max_concurrent_jobs %>
+  <%- if defined?(@sdaddr) -%>
+  SDAddress = <%= @sdaddr %>
+  <%- end -%>
+}

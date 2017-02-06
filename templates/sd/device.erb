@@ -1,0 +1,18 @@
+
+<% if defined?(@description) -%>
+#
+# <%= @description %>
+#
+<% end -%>
+Device {
+  Name = <%= @device_name %>
+  Device Type = <%= @device_type %>
+  Media Type = <%= @media_type %>
+  Archive Device = <%= @archive_device %>
+  LabelMedia = <%= scope.function_bool2yesno([@label_media]) %>
+  Random Access = <%= scope.function_bool2yesno([@random_access]) %>
+  AutomaticMount = <%= scope.function_bool2yesno([@automatic_mount]) %>
+  RemovableMedia = <%= scope.function_bool2yesno([@removable_media]) %>
+  AlwaysOpen = <%= scope.function_bool2yesno([@always_open]) %>
+  Maximum Concurrent Jobs = <%= @max_concurrent_jobs %>
+}

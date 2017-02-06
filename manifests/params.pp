@@ -3,8 +3,13 @@ class bacula::params {
   $package_fd_name='bacula-fd'
   $service_fd_name='bacula-fd'
 
+  $package_sd_name='bacula-sd'
+  $service_sd_name='bacula-sd'
+
   $fd_workdir = '/var/lib/bacula'
   $fd_pid = '/var/run/bacula'
+  $sd_workdir = '/var/lib/bacula'
+  $sd_pid = '/var/run/bacula'
 
   case $::osfamily
   {
