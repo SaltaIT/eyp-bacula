@@ -1,0 +1,34 @@
+#
+# puppet managed file
+#
+
+#
+# default director
+#
+Director {
+  Name = <%= @director_name %>
+  Password = "<%= @director_password %>"
+}
+
+#
+# "Global" File daemon configuration specifications
+#
+FileDaemon {
+  Name = <%= @fdname %>
+  FDport = <%= @port %>
+  WorkingDirectory = /var/lib/bacula
+  Pid Directory = /var/run/bacula
+  Maximum Concurrent Jobs = <%= @max_concurrent_jobs %>
+  <%- if defined?(@plugin_dir) -%>
+  Plugin Directory = <%= @plugin_dir %>
+  <%- end -%>
+  <%- if defined?(@fdaddr) -%>
+  FDAddress = <%= @fdaddr %>
+  <%- end -%>
+}
+
+# Send all messages except skipped files back to Director
+Messages {
+  Name = Standard
+  director = <%= @director_name %> = all, !skipped, !restored
+}

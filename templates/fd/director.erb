@@ -1,0 +1,11 @@
+
+<% if defined?(@description) -%>
+#
+# <%= @description %>
+#
+<% end -%>
+Director {
+  Name = <%= @director_name %>
+  Password = "<%= @director_password %>"
+  Monitor = <%= scope.function_bool2yesno([@monitor]) %>
+}

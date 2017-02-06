@@ -1,7 +1,7 @@
 class bacula::params {
 
-  $package_name='bacula'
-  $service_name='bacula'
+  $package_fd_name='bacula-fd'
+  $service_fd_name='bacula-fd'
 
   case $::osfamily
   {

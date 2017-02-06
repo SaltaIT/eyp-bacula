@@ -42,7 +42,7 @@ management, etc.) this is the time to mention it.
 
 ### Setup Requirements
 
-This module requires pluginsync enabled 
+This module requires pluginsync enabled
 
 ### Beginning with bacula
 
@@ -54,8 +54,16 @@ for upgrading, you may wish to include an additional section here: Upgrading
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+### bacula-fd
+
+```puppet
+class { 'bacula::fd': }
+
+bacula::fd::director { 'monitor':
+  director_password => '123',
+  monitor => true,
+}
+```
 
 ## Reference
 
