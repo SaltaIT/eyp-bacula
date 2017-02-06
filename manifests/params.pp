@@ -3,6 +3,9 @@ class bacula::params {
   $package_fd_name='bacula-fd'
   $service_fd_name='bacula-fd'
 
+  $fd_workdir = '/var/lib/bacula'
+  $fd_pid = '/var/run/bacula'
+
   case $::osfamily
   {
     'redhat':
