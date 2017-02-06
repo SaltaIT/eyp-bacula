@@ -4,9 +4,9 @@
 #   Changer Command = ""
 #   Changer Device = /dev/null
 # }
-define bacula::sd::autocharger(
+define bacula::sd::autochanger(
+                                $devices,
                                 $autochanger_name = $name,
-                                $devices          = [],
                                 $command          = '',
                                 $device           = '/dev/null',
                                 $description      = undef,
