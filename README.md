@@ -65,6 +65,24 @@ bacula::fd::director { 'monitor':
 }
 ```
 
+### bacula-sd
+
+```puppet
+class { 'bacula::sd': }
+
+bacula::sd::device { 'data1':
+  archive_device => '/var/bacula/data1',
+}
+
+bacula::sd::device { 'data2':
+  archive_device => '/var/bacula/data1',
+}
+
+bacula::sd::autochanger { 'autochanger1':
+  devices => [ 'data1', 'data2' ],
+}
+```
+
 ## Reference
 
 Here, list the classes, types, providers, facts, etc contained in your module.
