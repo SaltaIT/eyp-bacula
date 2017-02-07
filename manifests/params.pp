@@ -7,7 +7,7 @@ class bacula::params {
   $service_sd_name='bacula-sd'
 
   $package_dir_name=[ 'bacula-director-common', 'bacula-director-mysql', 'bacula-common-mysql' ]
-  $service_sd_name='bacula-dir'
+  $service_dir_name='bacula-dir'
 
   $fd_workdir = '/var/lib/bacula'
   $fd_pid = '/var/run/bacula'
