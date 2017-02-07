@@ -16,26 +16,14 @@ Director {
   <%- end -%>
 }
 
-# Reasonable message delivery -- send most everything to email address
-#  and to the console
+# email notifications
 Messages {
   Name = Standard
-#
-# NOTE! If you send to two email or more email addresses, you will need
-#  to replace the %r in the from field (-f part) with a single valid
-#  email address in both the mailcommand and the operatorcommand.
-#  What this does is, it sets the email address that emails would display
-#  in the FROM field, which is by default the same email as they're being
-#  sent to.  However, if you send email to more than one address, then
-#  you'll have to set the FROM address manually, to a single address.
-#  for example, a 'no-reply@mydomain.com', is better since that tends to
-#  tell (most) people that its coming from an automated source.
+  mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<<%= @mail_from %>\>\" -s \"<%= @notification_subject %>\" %r"
+  operatorcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<<%= @mail_from %>\>\" -s \"<%= @operator_subject %>\" %r"
 
-#
-  mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<%r\>\" -s \"Bacula: %t %e of %c %l\" %r"
-  operatorcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<%r\>\" -s \"Bacula: Intervention needed for %j\" %r"
-  mail = root = all, !skipped
-  operator = root = mount
+  mail = <%= @mailto_notification %> = all, !skipped
+  operator = <%= @mailto_operator %> = mount
   console = all, !skipped, !saved
 
   append = "<%= @bacula_log %>" = all, !skipped
@@ -43,9 +31,7 @@ Messages {
 }
 
 
-#
-# Message delivery for daemon messages (no job).
-#
+# general log
 Messages {
   Name = Daemon
   mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<%r\>\" -s \"Bacula daemon message\" %r"
