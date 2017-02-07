@@ -7,6 +7,6 @@ define bacula::dir::catalog (
   concat::fragment{ "/etc/bacula/bacula-dir.conf catalog ${catalog_name}":
     target  => '/etc/bacula/bacula-dir.conf',
     order   => '10',
-    content => template("${module_name}/fd/catalog.erb"),
+    content => template("${module_name}/dir/catalog.erb"),
   }
 }
