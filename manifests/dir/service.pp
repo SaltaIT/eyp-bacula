@@ -15,7 +15,7 @@ class bacula::dir::service inherits bacula::dir {
   {
     if($bacula::dir::manage_service)
     {
-      service { $bacula::params::service_fd_name:
+      service { $bacula::params::service_dir_name:
         ensure => $bacula::dir::service_ensure,
         enable => $bacula::dir::service_enable,
       }
