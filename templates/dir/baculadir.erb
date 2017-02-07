@@ -34,8 +34,8 @@ Messages {
 # general log
 Messages {
   Name = Daemon
-  mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<%r\>\" -s \"Bacula daemon message\" %r"
-  mail = root = all, !skipped
+  mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<<%= @mail_from %>\>\" -s \"Bacula daemon message\" %r"
+  mail = <%= @mailto_notification %> = all, !skipped
   console = all, !skipped, !saved
   append = "<%= @bacula_log %>" = all, !skipped
 }
