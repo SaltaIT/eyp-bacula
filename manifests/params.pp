@@ -6,10 +6,15 @@ class bacula::params {
   $package_sd_name='bacula-sd'
   $service_sd_name='bacula-sd'
 
+  $package_dir_name=[ 'bacula-director-common', 'bacula-director-mysql', 'bacula-common-mysql' ]
+  $service_sd_name='bacula-dir'
+
   $fd_workdir = '/var/lib/bacula'
   $fd_pid = '/var/run/bacula'
   $sd_workdir = '/var/lib/bacula'
   $sd_pid = '/var/run/bacula'
+  $dir_workdir = '/var/lib/bacula'
+  $dir_pid = '/var/run/bacula'
 
   case $::osfamily
   {

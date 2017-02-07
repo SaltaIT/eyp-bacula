@@ -1,0 +1,17 @@
+#
+# puppet managed file
+#
+
+Director {
+  Name = <%= @director_name %>
+  DIRport = <%= @port %>
+  QueryFile = "/etc/bacula/scripts/query.sql"
+  WorkingDirectory = "<%= scope.lookupvar('bacula::params::dir_workdir') %>"
+  Pid Directory = "<%= scope.lookupvar('bacula::params::dir_pid') %>"
+  Maximum Concurrent Jobs = <%= @max_concurrent_jobs %>
+  Password = "<%= @director_password %>"
+  Messages = Daemon
+  <%- if defined?(@diraddr) -%>
+  DirAddress = <%= @diraddr %>
+  <%- end -%>
+}

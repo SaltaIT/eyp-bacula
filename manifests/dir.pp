@@ -1,23 +1,21 @@
-class bacula::fd (
+class bacula::dir (
                     $manage_package        = true,
                     $package_ensure        = 'installed',
                     $manage_service        = true,
                     $manage_docker_service = true,
                     $service_ensure        = 'running',
                     $service_enable        = true,
-                    $port                  = '9102',
-                    $fdname                = $::fqdn,
                     $director_name         = $::fqdn,
-                    $director_password     = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
                     $max_concurrent_jobs   = '20',
-                    $plugin_dir            = undef,
-                    $fdaddr                = undef,
-                  ) inherits bacula::params{
+                    $director_password     = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+                    $port                  = '9101',
+                    $diraddr               = undef,
+                  ) inherits bacula::params {
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
 
-  class { '::bacula::fd::install': } ->
-  class { '::bacula::fd::config': } ~>
-  class { '::bacula::fd::service': } ->
-  Class['::bacula::fd']
+  class { '::bacula::dir::install': } ->
+  class { '::bacula::dir::config': } ~>
+  class { '::bacula::dir::service': } ->
+  Class['::bacula::dir']
 }
