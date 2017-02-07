@@ -16,7 +16,9 @@ Director {
   <%- end -%>
 }
 
+#
 # email notifications
+#
 Messages {
   Name = Standard
   mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<<%= @mail_from %>\>\" -s \"<%= @notification_subject %>\" %r"
@@ -30,12 +32,13 @@ Messages {
   catalog = all
 }
 
-
+#
 # general log
+#
 Messages {
   Name = Daemon
-  mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<<%= @mail_from %>\>\" -s \"Bacula daemon message\" %r"
-  mail = <%= @mailto_notification %> = all, !skipped
+  mailcommand = "/usr/sbin/bsmtp -h localhost -f \"\(Bacula\) \<<%= @mail_from %>\>\" -s \"<%= @daemon_subject %>\" %r"
+  mail = <%= @mailto_daemon_notifications %> = all, !skipped
   console = all, !skipped, !saved
   append = "<%= @bacula_log %>" = all, !skipped
 }
