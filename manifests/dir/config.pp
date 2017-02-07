@@ -1,6 +1,7 @@
 #
 # concat bacula-dir
 # 00 - base config
+# 10 - catalogs
 #
 class bacula::dir::config inherits bacula::dir {
 
