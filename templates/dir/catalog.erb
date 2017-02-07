@@ -5,6 +5,6 @@
 #
 <% end -%>
 Catalog {
-  Name = MyCatalog
-  dbname = "XXX_DBNAME_XXX"; dbuser = "XXX_DBUSER_XXX"; dbpassword = "XXX_DBPASSWORD_XXX"
+  Name = <%= @catalog_name %>
+  dbname = "<%= @dbname %>"; dbuser = "<%= @dbuser %>"; dbpassword = "<%= @dbpassword %>"
 }
