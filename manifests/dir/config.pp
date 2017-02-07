@@ -17,4 +17,21 @@ class bacula::dir::config inherits bacula::dir {
     order   => '00',
     content => template("${module_name}/dir/baculadir.erb"),
   }
+
+  if($bacula::dir::baculalog_rotate!=undef)
+  {
+    if(defined(Class['::logrotate']))
+    {
+      logrotate::logs { 'baculalog':
+        ensure       => $baculalog_logrotate_ensure,
+        log          => "$bacula::dir::bacula_log",
+        compress     => true,
+        copytruncate => true,
+        frequency    => $bacula::dir::baculalog_frequency,
+        rotate       => $bacula::dir::baculalog_rotate,
+        missingok    => true,
+        size         => $bacula::dir::baculalog_size,
+      }
+    }
+  }
 }
