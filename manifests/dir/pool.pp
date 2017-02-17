@@ -22,10 +22,11 @@ define bacula::dir::pool(
 
   $pool_name_filename=downcase($pool_name)
   file { "/etc/bacula/bacula-dir/pools/${pool_name_filename}.conf":
-    ensure  => 'ensure',
+    ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0640',
+    content => template("${module_name}/dir/pool.erb"),
   }
 
 }
