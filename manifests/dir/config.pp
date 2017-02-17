@@ -97,4 +97,8 @@ class bacula::dir::config inherits bacula::dir {
       }
     }
   }
+
+  bacula::dir::pool { 'Scratch':
+    require => File['/etc/bacula/bacula-dir/pools'],
+  }
 }

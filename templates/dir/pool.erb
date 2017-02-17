@@ -1,0 +1,23 @@
+
+Pool {
+  Name = <%= @pool_name %>
+  Pool Type = <%= @pool_type %>
+  <%- if defined(@recycle) -%>
+  Recycle = <%= @recycle %>
+  <%- end -%>
+  <%- if defined(@autoprune) -%>
+  AutoPrune = <%= @autoprune %>
+  <%- end -%>
+  <%- if defined(@volume_retention) -%>
+  Volume Retention = <%= @volume_retention %>
+  <%- end -%>
+  <%- if defined(@maximum_volume_size) -%>
+  Maximum Volume Bytes = <%= @maximum_volume_size %>
+  <%- end -%>
+  <%- if defined(@maximum_volumes) -%>
+  Maximum Volumes = <%= @maximum_volumes %>
+  <%- end -%>
+  <%- if defined(@label_format) -%>
+  Label Format = "<%= @label_format %>"
+  <%- end -%>
+}
