@@ -1,0 +1,15 @@
+<% if defined?(@description) -%>
+#
+# <%= @description %>
+#
+<% end -%>
+
+Storage {
+  Name = <%= @storage_name %>
+  Address = <%= @addr %>
+  SDPort = <%= @sd_port %>
+  Password = "<%= @password %>"
+  Device = <%= @device %>
+  Media Type = <%= @media_type %>
+  Maximum Concurrent Jobs = <%= @max_concurrent_jobs %>
+}

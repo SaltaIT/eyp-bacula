@@ -21,6 +21,7 @@ define bacula::dir::pool(
                         ) {
 
   $pool_name_filename=downcase($pool_name)
+  
   file { "/etc/bacula/bacula-dir/pools/${pool_name_filename}.conf":
     ensure  => 'present',
     owner   => 'root',
