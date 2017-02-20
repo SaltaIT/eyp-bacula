@@ -1,0 +1,12 @@
+
+<% if defined?(@description) -%>
+#
+# <%= @description %>
+#
+<% end -%>
+Schedule {
+  Name = "<%= @schedule_name %>"
+  <%- @run.each do |value| -%>
+  Run = <%= value %>
+  <%- end -%>
+}
