@@ -13,6 +13,7 @@ FileSet {
       <%- end -%>
       signature = <%= @signature %>
       onefs = <%= scope.function_bool2yesno([@onefs]) %>
+      aclsupport = <%= scope.function_bool2yesno([@aclsupport]) %>
     }
     <%- @includelist.each do |value| -%>
     File = <%= value %>

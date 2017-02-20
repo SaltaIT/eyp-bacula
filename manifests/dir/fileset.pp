@@ -49,6 +49,7 @@ define bacula::dir::fileset (
                               $gzip = false,
                               $gzip_level = '6',
                               $onefs = false,
+                              $aclsupport = false,
                             ) {
   $fileset_name_filename=downcase($fileset_name)
 
