@@ -1,0 +1,16 @@
+
+<% if defined?(@description) -%>
+#
+# <%= @description %>
+#
+<% end -%>
+Client {
+  Name = <%= @client_name %>
+  Address = <%= @addr %>
+  FDPort = <%= @port %>
+  Catalog = <%= @catalog %>
+  Password = "<%= @password %>"
+  File Retention = <%= @file_retention %>
+  Job Retention = <%= @job_retention %>
+  AutoPrune = <%= scope.function_bool2yesno([@autoprune]) %>
+}
