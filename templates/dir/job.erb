@@ -1,0 +1,14 @@
+<%= @job_type %> {
+  Name = "<%= @job_name %>"
+  Type = <%= @type %>
+  Level = Incremental
+  Client = lolcathost-fd
+  FileSet = "Full Set"
+  Schedule = "WeeklyCycle"
+  Storage = File1
+  Messages = Standard
+  Pool = File
+  Spool Data = <%= scope.function_bool2yesno([@spool_data]) %>
+  Priority = <%= @priority %>
+  Write Bootstrap = "<%= @write_bootstrap %>"
+}
