@@ -18,16 +18,16 @@
 # RunAfterJob  = "/etc/bacula/scripts/delete_catalog_backup"
 
 define bacula::dir::jobtemplate (
-                                  $job_name = $name,
-                                  $type = 'Backup',
-                                  $level = undef,
-                                  $client = undef,
-                                  $fileset = undef,
-                                  $schedule = undef,
-                                  $storage = undef,
-                                  $pool = undef,
-                                  $spool_data = false,
-                                  $priority = undef,
+                                  $job_name        = $name,
+                                  $type            = 'Backup',
+                                  $level           = undef,
+                                  $client          = undef,
+                                  $fileset         = undef,
+                                  $schedule        = undef,
+                                  $storage         = undef,
+                                  $pool            = undef,
+                                  $spool_data      = false,
+                                  $priority        = undef,
                                   $write_bootstrap = '/var/lib/bacula/%c.bsr',
                                 ) {
   $job_type = 'JobDefs'

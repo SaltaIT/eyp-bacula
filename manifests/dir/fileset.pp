@@ -45,11 +45,11 @@ define bacula::dir::fileset (
                               $fileset_name = $name,
                               $includelist = [ '/var/log', '/etc', '/var/spool/cron' ],
                               $excludelist = [ '/', '/dev', '/sys', '/proc' ],
-                              $signature = 'MD5',
-                              $gzip = false,
-                              $gzip_level = '6',
-                              $onefs = false,
-                              $aclsupport = false,
+                              $signature   = 'MD5',
+                              $gzip        = false,
+                              $gzip_level  = '6',
+                              $onefs       = false,
+                              $aclsupport  = false,
                             ) {
   $fileset_name_filename=downcase($fileset_name)
 
