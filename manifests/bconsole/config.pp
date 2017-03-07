@@ -5,10 +5,10 @@
 class bacula::bconsole::config inherits bacula::fd {
 
   file { '/etc/bacula/bconsole.conf':
-    ensure   => 'present',
-    owner    => 'root',
-    group    => 'root',
-    mode     => '0640',
-    template => template("${module_name}/bconsole/bconsole.erb"),
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0640',
+    content => template("${module_name}/bconsole/bconsole.erb"),
   }
 }
