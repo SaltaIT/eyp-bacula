@@ -15,7 +15,7 @@ define bacula::sd::autochanger(
 
   concat::fragment{ "/etc/bacula/bacula-sd.conf autochanger ${autochanger_name}":
     target  => '/etc/bacula/bacula-sd.conf',
-    order   => '10',
+    order   => '20',
     content => template("${module_name}/sd/autochanger.erb"),
   }
 }

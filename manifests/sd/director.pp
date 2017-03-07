@@ -7,15 +7,15 @@
 #   Password = "PxLNs0J_OI_0VPrXpk24LDVDdlYmnW5xR"
 #   Monitor = yes
 # }
-define bacula::fd::director (
+define bacula::sd::director (
                               $password,
                               $director_name = $name,
                               $monitor       = false,
                               $description   = undef,
                             ) {
-  concat::fragment{ "/etc/bacula/bacula-fd.conf director ${director_name}":
-    target  => '/etc/bacula/bacula-fd.conf',
-    order   => '10',
+  concat::fragment{ "/etc/bacula/bacula-sd.conf director ${director_name}":
+    target  => '/etc/bacula/bacula-sd.conf',
+    order   => '90',
     content => template("${module_name}/fd/director.erb"),
   }
 }
