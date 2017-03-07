@@ -6,5 +6,15 @@
 <% end -%>
 Catalog {
   Name = <%= @catalog_name %>
-  dbname = "<%= @dbname %>"; dbuser = "<%= @dbuser %>"; dbpassword = "<%= @dbpassword %>"
+  dbname = "<%= @dbname %>"
+  user = "<%= @dbuser %>"
+  password = "<%= @dbpassword %>"
+  <%- if defined?(@dbaddress) -%>
+  DB Address = remote.acme.com
+    <%- if defined?(@dbport) -%>
+  DB Port = <%= @dbport %>
+    <%- end -%>
+  <%- else -%>
+  DB socket = <%= @dbsocket %>
+  <%- end -%>
 }

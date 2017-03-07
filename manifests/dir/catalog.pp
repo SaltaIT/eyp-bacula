@@ -3,6 +3,9 @@ define bacula::dir::catalog (
                               $catalog_name = $name,
                               $dbname       = 'bacula',
                               $dbuser       = 'bacula',
+                              $dbsocket     = '/var/mysql/bacula/mysqld.sock',
+                              $dbaddress    = undef,
+                              $dbport       = undef,
                               $setup_mysql  = true,
                             ) {
   concat::fragment{ "/etc/bacula/bacula-dir.conf catalog ${catalog_name}":
