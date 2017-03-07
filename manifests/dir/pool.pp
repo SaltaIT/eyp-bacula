@@ -20,7 +20,7 @@ define bacula::dir::pool(
                           $description         = undef,
                         ) {
 
-  if(!defined(Concat::Frament['bacula-dir.conf pools includes']))
+  if(!defined(Concat::Fragment['bacula-dir.conf pools includes']))
   {
     concat::fragment{ 'bacula-dir.conf pools includes':
       target  => '/etc/bacula/bacula-dir.conf',

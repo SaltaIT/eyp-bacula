@@ -51,7 +51,7 @@ define bacula::dir::fileset (
                               $onefs       = false,
                               $aclsupport  = false,
                             ) {
-  if(!defined(Concat::Frament['bacula-dir.conf filesets includes']))
+  if(!defined(Concat::Fragment['bacula-dir.conf filesets includes']))
   {
     concat::fragment{ 'bacula-dir.conf filesets includes':
       target  => '/etc/bacula/bacula-dir.conf',

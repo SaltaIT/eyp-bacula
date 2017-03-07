@@ -15,7 +15,7 @@ define bacula::dir::job (
                         ) {
   $job_type = 'Job'
 
-  if(!defined(Concat::Frament['bacula-dir.conf jobs includes']))
+  if(!defined(Concat::Fragment['bacula-dir.conf jobs includes']))
   {
     concat::fragment{ 'bacula-dir.conf jobs includes':
       target  => '/etc/bacula/bacula-dir.conf',

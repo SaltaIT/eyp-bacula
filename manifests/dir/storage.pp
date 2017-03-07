@@ -18,7 +18,7 @@ define bacula::dir::storage (
                               $max_concurrent_jobs = '20',
                               $description         = undef,
                             ) {
-  if(!defined(Concat::Frament['bacula-dir.conf storages includes']))
+  if(!defined(Concat::Fragment['bacula-dir.conf storages includes']))
   {
     concat::fragment{ 'bacula-dir.conf storages includes':
       target  => '/etc/bacula/bacula-dir.conf',

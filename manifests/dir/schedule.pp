@@ -20,7 +20,7 @@ define bacula::dir::schedule(
                               $schedule_name = $name,
                               $description   = undef,
                             ) {
-  if(!defined(Concat::Frament['bacula-dir.conf schedules includes']))
+  if(!defined(Concat::Fragment['bacula-dir.conf schedules includes']))
   {
     concat::fragment{ 'bacula-dir.conf schedules includes':
       target  => '/etc/bacula/bacula-dir.conf',

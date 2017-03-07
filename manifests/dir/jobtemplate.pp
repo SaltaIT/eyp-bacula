@@ -34,7 +34,7 @@ define bacula::dir::jobtemplate (
                                 ) {
   $job_type = 'JobDefs'
 
-  if(!defined(Concat::Frament['bacula-dir.conf jobtemplates includes']))
+  if(!defined(Concat::Fragment['bacula-dir.conf jobtemplates includes']))
   {
     concat::fragment{ 'bacula-dir.conf jobtemplates includes':
       target  => '/etc/bacula/bacula-dir.conf',

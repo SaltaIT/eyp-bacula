@@ -20,7 +20,7 @@ define bacula::dir::client(
                             $autoprune      = true,
                           ) {
 
-  if(!defined(Concat::Frament['bacula-dir.conf client includes']))
+  if(!defined(Concat::Fragment['bacula-dir.conf client includes']))
   {
     concat::fragment{ 'bacula-dir.conf client includes':
       target  => '/etc/bacula/bacula-dir.conf',
