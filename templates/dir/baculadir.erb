@@ -42,12 +42,3 @@ Messages {
   console = all, !skipped, !saved
   append = "<%= @bacula_log %>" = all, !skipped
 }
-
-
-@|"sh -c 'for f in /etc/bacula/bacula-dir/jobtemplates/*.conf ; do echo @${f} ; done'"
-@|"sh -c 'for f in /etc/bacula/bacula-dir/jobs/*.conf ; do echo @${f} ; done'"
-@|"sh -c 'for f in /etc/bacula/bacula-dir/filesets/*.conf ; do echo @${f} ; done'"
-@|"sh -c 'for f in /etc/bacula/bacula-dir/schedules/*.conf ; do echo @${f} ; done'"
-@|"sh -c 'for f in /etc/bacula/bacula-dir/storages/*.conf ; do echo @${f} ; done'"
-@|"sh -c 'for f in /etc/bacula/bacula-dir/clients/*.conf ; do echo @${f} ; done'"
-@|"sh -c 'for f in /etc/bacula/bacula-dir/pools/*.conf ; do echo @${f} ; done'"

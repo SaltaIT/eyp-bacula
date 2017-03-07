@@ -20,8 +20,17 @@ define bacula::dir::pool(
                           $description         = undef,
                         ) {
 
+  if(!defined(Concat::Frament['bacula-dir.conf pools includes']))
+  {
+    concat::fragment{ 'bacula-dir.conf pools includes':
+      target  => '/etc/bacula/bacula-dir.conf',
+      order   => '90',
+      content => "@|\"sh -c 'for f in /etc/bacula/bacula-dir/pools/*.conf ; do echo @\${f} ; done'\"\n",
+    }
+  }
+
   $pool_name_filename=downcase($pool_name)
-  
+
   file { "/etc/bacula/bacula-dir/pools/${pool_name_filename}.conf":
     ensure  => 'present',
     owner   => 'root',

@@ -20,6 +20,15 @@ define bacula::dir::client(
                             $autoprune      = true,
                           ) {
 
+  if(!defined(Concat::Frament['bacula-dir.conf client includes']))
+  {
+    concat::fragment{ 'bacula-dir.conf client includes':
+      target  => '/etc/bacula/bacula-dir.conf',
+      order   => '90',
+      content => "@|\"sh -c 'for f in /etc/bacula/bacula-dir/clients/*.conf ; do echo @\${f} ; done'\"\n",
+    }
+  }
+
   $client_name_filename=downcase($client_name)
 
   file { "/etc/bacula/bacula-dir/clients/${client_name_filename}.conf":

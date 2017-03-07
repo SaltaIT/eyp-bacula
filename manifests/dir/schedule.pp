@@ -20,6 +20,15 @@ define bacula::dir::schedule(
                               $schedule_name = $name,
                               $description   = undef,
                             ) {
+  if(!defined(Concat::Frament['bacula-dir.conf schedules includes']))
+  {
+    concat::fragment{ 'bacula-dir.conf schedules includes':
+      target  => '/etc/bacula/bacula-dir.conf',
+      order   => '90',
+      content => "@|\"sh -c 'for f in /etc/bacula/bacula-dir/schedules/*.conf ; do echo @\${f} ; done'\"\n",
+    }
+  }
+
   $schedule_name_filename=downcase($schedule_name)
 
   file { "/etc/bacula/bacula-dir/schedules/${schedule_name_filename}.conf":

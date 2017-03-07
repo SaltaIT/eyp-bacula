@@ -10,9 +10,9 @@ class bacula::dir::install inherits bacula::dir {
 
   file { '/var/lib/bacula':
     ensure => 'directory',
-    owner => 'bacula',
-    group => 'bacula',
-    mode => '0700',
+    owner  => 'bacula',
+    group  => 'bacula',
+    mode   => '0700',
   }
 
 }

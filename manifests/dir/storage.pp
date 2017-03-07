@@ -18,6 +18,14 @@ define bacula::dir::storage (
                               $max_concurrent_jobs = '20',
                               $description         = undef,
                             ) {
+  if(!defined(Concat::Frament['bacula-dir.conf storages includes']))
+  {
+    concat::fragment{ 'bacula-dir.conf storages includes':
+      target  => '/etc/bacula/bacula-dir.conf',
+      order   => '90',
+      content => "@|\"sh -c 'for f in /etc/bacula/bacula-dir/storages/*.conf ; do echo @\${f} ; done'\"\n",
+    }
+  }
 
   $storage_name_filename=downcase($storage_name)
 

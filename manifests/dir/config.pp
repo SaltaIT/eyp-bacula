@@ -2,6 +2,7 @@
 # concat bacula-dir
 # 00 - base config
 # 10 - catalogs
+# 90 - includes
 #
 class bacula::dir::config inherits bacula::dir {
 
@@ -30,56 +31,56 @@ class bacula::dir::config inherits bacula::dir {
   }
 
   file { '/etc/bacula/bacula-dir/jobs':
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
-    purge => true,
+    purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
 
   file { '/etc/bacula/bacula-dir/filesets':
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
-    purge => true,
+    purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
 
   file { '/etc/bacula/bacula-dir/schedules':
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
-    purge => true,
+    purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
 
   file { '/etc/bacula/bacula-dir/storages':
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
-    purge => true,
+    purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
 
   file { '/etc/bacula/bacula-dir/clients':
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
-    purge => true,
+    purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
 
   file { '/etc/bacula/bacula-dir/pools':
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
-    purge => true,
+    purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
 
@@ -94,8 +95,8 @@ class bacula::dir::config inherits bacula::dir {
     if(defined(Class['::logrotate']))
     {
       logrotate::logs { 'baculalog':
-        ensure       => $baculalog_logrotate_ensure,
-        log          => "$bacula::dir::bacula_log",
+        ensure       => $bacula::dir::baculalog_rotate,
+        log          => $bacula::dir::bacula_log,
         compress     => true,
         copytruncate => true,
         frequency    => $bacula::dir::baculalog_frequency,
