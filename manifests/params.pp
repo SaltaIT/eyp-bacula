@@ -16,7 +16,7 @@ class bacula::params {
   $dir_workdir = '/var/lib/bacula'
   $dir_pid = '/var/run/bacula'
 
-  $bacula_console_package = 'bacula-console'
+  $package_bconsole = 'bacula-console'
 
   case $::osfamily
   {
