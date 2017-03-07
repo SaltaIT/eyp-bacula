@@ -14,11 +14,12 @@ class bacula::dir::config inherits bacula::dir {
   }
 
   file { '/etc/bacula/bacula-dir':
-    ensure => 'directory',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0750',
-    purge  => true,
+    ensure  => 'directory',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0750',
+    recurse => true,
+    purge   => true,
   }
 
   file { '/etc/bacula/bacula-dir/jobtemplates':
@@ -26,6 +27,7 @@ class bacula::dir::config inherits bacula::dir {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
+    recurse => true,
     purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
@@ -35,6 +37,7 @@ class bacula::dir::config inherits bacula::dir {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
+    recurse => true,
     purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
@@ -44,6 +47,7 @@ class bacula::dir::config inherits bacula::dir {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
+    recurse => true,
     purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
@@ -53,6 +57,7 @@ class bacula::dir::config inherits bacula::dir {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
+    recurse => true,
     purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
@@ -62,6 +67,7 @@ class bacula::dir::config inherits bacula::dir {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
+    recurse => true,
     purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
@@ -71,6 +77,7 @@ class bacula::dir::config inherits bacula::dir {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
+    recurse => true,
     purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }
@@ -80,6 +87,7 @@ class bacula::dir::config inherits bacula::dir {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
+    recurse => true,
     purge   => true,
     require => File['/etc/bacula/bacula-dir'],
   }

@@ -6,6 +6,13 @@ class bacula::dir::install inherits bacula::dir {
       ensure => $bacula::dir::package_ensure,
       before => File['/var/lib/bacula'],
     }
+
+    if($bacula::dir::install_bacula_console)
+    {
+      package { $bacula::params::bacula_console_package:
+        ensure => $bacula::dir::package_ensure,
+      }
+    }
   }
 
   file { '/var/lib/bacula':

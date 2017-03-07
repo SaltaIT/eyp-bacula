@@ -22,6 +22,7 @@ class bacula::dir (
                     $notification_subject        = 'Bacula: %t %e of %c %l',
                     $operator_subject            = 'Bacula: Intervention needed for %j',
                     $daemon_subject              = 'Bacula daemon message',
+                    $install_bacula_console      = true,
                   ) inherits bacula::params {
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
