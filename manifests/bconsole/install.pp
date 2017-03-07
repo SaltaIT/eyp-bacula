@@ -1,4 +1,4 @@
-class bacula::bconsole::install inherits bacula::fd {
+class bacula::bconsole::install inherits bacula::bconsole {
 
   if($bacula::bconsole::manage_package)
   {

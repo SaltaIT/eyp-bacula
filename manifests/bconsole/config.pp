@@ -2,7 +2,7 @@
 # concat bacula-fd
 # 00 - base config
 # 10 - dirctors
-class bacula::bconsole::config inherits bacula::fd {
+class bacula::bconsole::config inherits bacula::bconsole {
 
   file { '/etc/bacula/bconsole.conf':
     ensure  => 'present',
