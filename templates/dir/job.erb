@@ -1,14 +1,34 @@
 <%= @job_type %> {
   Name = "<%= @job_name %>"
   Type = <%= @type %>
-  Level = Incremental
-  Client = lolcathost-fd
-  FileSet = "Full Set"
-  Schedule = "WeeklyCycle"
-  Storage = File1
+  <%- if defined?(@level) -%>
+  Level = <%= @level %>
+  <%- end -%>
+  <%- if defined?(@client) -%>
+  Client = <%= @client %>
+  <%- end -%>
+  <%- if defined?(@fileset) -%>
+  FileSet = "<%= @fileset %>"
+  <%- end -%>
+  <%- if defined?(@schedule) -%>
+  Schedule = "<%= @schedule %>"
+  <%- end -%>
+  <%- if defined?(@storage) -%>
+  Storage = <%= @storage %>
+  <%- end -%>
   Messages = Standard
-  Pool = File
+  <%- if defined?(@pool) -%>
+  Pool = <%= @pool %>
+  <%- end -%>
   Spool Data = <%= scope.function_bool2yesno([@spool_data]) %>
+  <%- if defined?(@priority) -%>
   Priority = <%= @priority %>
+  <%- end -%>
+  <%- if defined?(@run_before_job) -%>
+  RunBeforeJob = "<%= @run_before_job %>"
+  <%- end -%>
+  <%- if defined?(@run_after_job) -%>
+  RunAfterJob  = "<%= @run_after_job %>"
+  <%- end -%>
   Write Bootstrap = "<%= @write_bootstrap %>"
 }
