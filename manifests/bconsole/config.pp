@@ -4,10 +4,11 @@
 # 10 - dirctors
 class bacula::bconsole::config inherits bacula::fd {
 
-  concat { '/etc/bacula/bconsole.conf':
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
+  file { '/etc/bacula/bconsole.conf':
+    ensure   => 'present',
+    owner    => 'root',
+    group    => 'root',
+    mode     => '0640',
+    template => template("${module_name}/bconsole/bconsole.erb"),
   }
 }
