@@ -3,7 +3,7 @@ define bacula::dir::catalog (
                               $catalog_name = $name,
                               $dbname       = 'bacula',
                               $dbuser       = 'bacula',
-                              $dbsocket     = '/var/mysql/bacula/datadir/mysqld.sock',
+                              $dbsocket     = '/var/mysql/bacula/mysqld.sock',
                               $dbaddress    = undef,
                               $dbport       = undef,
                               $setup_mysql  = true,
