@@ -1,0 +1,1 @@
+bash -c 'echo show tables | mysql -u <%= @dbuser %> -p<%= @dbpassword %> <% if defined?(@dbaddress) %>-h <%= @dbaddress %><% if defined?(@dbport) %> -P <%= @dbport %><% end %><% else %>-S<%= @dbsocket %><% end %> <%= @dbname %> | grep Version'

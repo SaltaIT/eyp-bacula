@@ -1,12 +1,13 @@
 define bacula::dir::catalog (
                               $dbpassword,
-                              $catalog_name = $name,
-                              $dbname       = 'bacula',
-                              $dbuser       = 'bacula',
-                              $dbsocket     = '/var/mysql/bacula/mysqld.sock',
-                              $dbaddress    = undef,
-                              $dbport       = undef,
-                              $setup_mysql  = true,
+                              $catalog_name  = $name,
+                              $dbname        = 'bacula',
+                              $dbuser        = 'bacula',
+                              $dbsocket      = '/var/mysql/bacula/mysqld.sock',
+                              $dbaddress     = undef,
+                              $dbport        = undef,
+                              $setup_mysql   = true,
+                              $create_tables = true,
                             ) {
   concat::fragment{ "/etc/bacula/bacula-dir.conf catalog ${catalog_name}":
     target  => '/etc/bacula/bacula-dir.conf',
@@ -26,5 +27,18 @@ define bacula::dir::catalog (
     mysql_database { $dbname:
       ensure => 'present',
     }
+  }
+
+  if($create_tables)
+  {
+    exec { 'import bacula tables':
+      command => template("${module_name}/dir/run_mktables.erb"),
+      unless  => template("${module_name}/dir/unless_mktables.erb"),
+      path    => '/usr/sbin:/usr/bin:/sbin:/bin',
+    }
+    # file { '/tmp/runme':
+    #   ensure => 'present',
+    #   content => template("${module_name}/dir/run_mktables.erb"),
+    # }
   }
 }
