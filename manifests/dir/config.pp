@@ -6,6 +6,11 @@
 #
 class bacula::dir::config inherits bacula::dir {
 
+  #/usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula
+  systemd::service { 'bacula-director':
+    execstart => '/usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula'
+  }
+
   concat { '/etc/bacula/bacula-dir.conf':
     ensure  => 'present',
     owner   => 'root',
