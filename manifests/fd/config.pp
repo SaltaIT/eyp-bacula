@@ -16,4 +16,12 @@ class bacula::fd::config inherits bacula::fd {
     order   => '00',
     content => template("${module_name}/fd/baculafd.erb"),
   }
+
+  if($bacula::fd::director_name!=undef)
+  {
+    bacula::fd::director { $bacula::fd::director_name:
+      password => $bacula::fd::director_password,
+      description => "default director",
+    }
+  }
 }

@@ -18,7 +18,11 @@ class bacula::sd::config inherits bacula::sd {
     content => template("${module_name}/sd/baculasd.erb"),
   }
 
-  bacula::sd::director { $bacula::sd::director_name:
-    password => $bacula::sd::director_password,
+  if($bacula::sd::director_name!=undef)
+  {
+    bacula::sd::director { $bacula::sd::director_name:
+      password => $bacula::sd::director_password,
+      description => "default director",
+    }
   }
 }
