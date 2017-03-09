@@ -9,3 +9,9 @@ Director {
   Password = "<%= @password %>"
   Monitor = <%= scope.function_bool2yesno([@monitor]) %>
 }
+
+# Send all messages except skipped files back to Director
+Messages {
+  Name = Standard
+  director = <%= @director_name %> = all, !skipped, !restored
+}
