@@ -32,10 +32,11 @@ define bacula::dir::catalog (
   if($create_tables)
   {
     exec { 'import bacula tables':
-      command => template("${module_name}/dir/run_mktables.erb"),
-      unless  => template("${module_name}/dir/unless_mktables.erb"),
+      command => template("${module_name}/dir/exec/run_mktables.erb"),
+      unless  => template("${module_name}/dir/exec/unless_mktables.erb"),
       path    => '/usr/sbin:/usr/bin:/sbin:/bin',
     }
+
     # file { '/tmp/runme':
     #   ensure => 'present',
     #   content => template("${module_name}/dir/run_mktables.erb"),

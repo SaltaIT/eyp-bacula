@@ -39,6 +39,15 @@ class bacula::dir::install inherits bacula::dir {
     require => File['/etc/bacula/scripts'],
   }
 
+  file { '/etc/bacula/scripts/wait-for-bacula-pid.sh':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    source  => "puppet:///modules/${module_name}/wait-for-bacula-pid.sh",
+    require => File['/etc/bacula/scripts'],
+  }
+
   file { '/var/lib/bacula':
     ensure => 'directory',
     owner  => 'bacula',

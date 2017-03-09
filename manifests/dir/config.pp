@@ -6,9 +6,14 @@
 #
 class bacula::dir::config inherits bacula::dir {
 
-  #/usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula
+  # /usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula
+  # /var/run/bacula/bacula-dir.9101.pid
   systemd::service { 'bacula-director':
-    execstart => '/usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula'
+    execstart       => '/usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula',
+    pid_file        => "/var/run/bacula/bacula-dir.${bacula::dir::port}.pid",
+    execstartpost   => '/etc/bacula/scripts/wait-for-bacula-pid.sh',
+    type            => 'forking',
+    timeoutstartsec => '1m',
   }
 
   concat { '/etc/bacula/bacula-dir.conf':
