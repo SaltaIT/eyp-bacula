@@ -19,7 +19,7 @@ then
   exit 1
 fi
 
-for i in 1..${BACULATIMEOUT};
+for i in $(seq 1 ${BACULATIMEOUT});
 do
   if [ -f "${BACULARUN}/bacula-dir.${BACULAPORT}.pid" ];
   then
