@@ -26,6 +26,7 @@ class bacula::params {
       {
         /^[5-7].*$/:
         {
+          fail('not supported so far')
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
       }
@@ -40,9 +41,11 @@ class bacula::params {
           {
             /^14.*$/:
             {
+              $systemd=false
             }
             /^16.*$/:
             {
+              $systemd=true
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
