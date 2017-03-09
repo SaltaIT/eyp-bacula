@@ -35,6 +35,7 @@ define bacula::dir::catalog (
       command => template("${module_name}/dir/exec/run_mktables.erb"),
       unless  => template("${module_name}/dir/exec/unless_mktables.erb"),
       path    => '/usr/sbin:/usr/bin:/sbin:/bin',
+      require => Mysql::Community::Instance['bacula'],
     }
 
     # file { '/tmp/runme':
