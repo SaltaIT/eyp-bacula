@@ -48,6 +48,67 @@ This module requires pluginsync enabled
 
 ![bacula schema](http://www.bacula.org/7.4.x-manuals/en/images/Conf-Diagram.png "bacula schema")
 
+```puppet
+class { 'bacula::fd':
+  fdname => 'bacula-fd',
+}
+
+class { 'bacula::sd':
+  sdname => 'bacula-sd',
+}
+
+bacula::sd::device { 'data1':
+  archive_device => '/var/bacula/data1',
+}
+
+bacula::sd::device { 'data2':
+  archive_device => '/var/bacula/data2',
+}
+
+bacula::sd::autochanger { 'autochanger1':
+  devices => [ 'data1', 'data2' ],
+}
+
+class { 'bacula::dir':
+}
+
+bacula::dir::catalog { 'mycatalog':
+  dbpassword => 'baculapassw0rd',
+}
+
+bacula::dir::fileset { 'Full':
+}
+
+bacula::dir::schedule { 'weekly':
+  run => [ "Full 1st sun at 23:05", "Incremental mon-sat at 23:05" ],
+}
+
+bacula::dir::client { 'bacula-fd':
+  addr     => '127.0.0.1',
+  catalog  => 'mycatalog',
+}
+
+bacula::dir::storage { 'local-autochanger1':
+  password => 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+  device   => 'autochanger1',
+}
+
+bacula::dir::pool { '30days':
+  volume_retention => '30 days',
+  label_format     => '30days-',
+}
+
+bacula::dir::job { 'demo':
+  client   => 'bacula-fd',
+  fileset  => 'Full',
+  schedule => 'weekly',
+  storage  => 'local-autochanger1',
+  pool     => '30days',
+}
+
+class { 'bacula::bconsole': }
+```
+
 
 ## Usage
 
