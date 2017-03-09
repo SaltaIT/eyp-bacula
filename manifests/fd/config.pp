@@ -7,7 +7,6 @@ class bacula::fd::config inherits bacula::fd {
   systemd::service { 'bacula-fd':
     execstart       => inline_template("/usr/sbin/bacula-fd -c /etc/bacula/bacula-fd.conf<% if defined?(@debug_level) %> -d <%= @debug_level %><% end %>"),
     pid_file        => "/var/run/bacula/bacula-fd.${bacula::fd::port}.pid",
-    execstartpost   => '/etc/bacula/scripts/wait-for-bacula-pid.sh -d fd',
     type            => 'forking',
     timeoutstartsec => '1m',
   }
