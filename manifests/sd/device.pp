@@ -41,10 +41,10 @@ define bacula::sd::device (
     }
 
     file { $archive_device:
-      ensure => 'directory',
-      owner => 'bacula',
-      group => 'bacula',
-      mode => '0750',
+      ensure  => 'directory',
+      owner   => 'bacula',
+      group   => 'tape',
+      mode    => '0770',
       require => Exec["mkdir -p archive_device ${archive_device}"],
     }
   }
