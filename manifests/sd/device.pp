@@ -35,6 +35,7 @@ define bacula::sd::device (
   if($mkdir_archive_device)
   {
     exec { "mkdir -p archive_device ${archive_device}":
+      path    => '/bin:/sbin:/usr/bin:/usr/sbin',
       command => "mkdir -p ${archive_device}",
       creates => $archive_device,
     }
