@@ -11,6 +11,7 @@ class bacula::sd (
                     $sdaddr                = undef,
                     $director_name         = $::fqdn,
                     $director_password     = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+                    $debug_level           = undef,
                   ) inherits bacula::params{
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')

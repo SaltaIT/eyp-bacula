@@ -5,6 +5,13 @@
 # 11 devices
 class bacula::sd::config inherits bacula::sd {
 
+  systemd::service { 'bacula-sd':
+    execstart       => inline_template("/usr/sbin/bacula-sd -c /etc/bacula/bacula-sd.conf -u bacula -g tape<% if defined?(@debug_level) %> -d <%= @debug_level %><% end %>"),
+    pid_file        => "/var/run/bacula/bacula-sd.${bacula::fd::port}.pid",
+    type            => 'forking',
+    timeoutstartsec => '1m',
+  }
+
   concat { '/etc/bacula/bacula-sd.conf':
     ensure  => 'present',
     owner   => 'root',

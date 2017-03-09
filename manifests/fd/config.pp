@@ -4,6 +4,13 @@
 # 10 - dirctors
 class bacula::fd::config inherits bacula::fd {
 
+  systemd::service { 'bacula-director':
+    execstart       => inline_template("/usr/sbin/bacula-fd -c /etc/bacula/bacula-fd.conf<% if defined?(@debug_level) %> -d <%= @debug_level %><% end %>"),
+    pid_file        => "/var/run/bacula/bacula-fd.${bacula::fd::port}.pid",
+    type            => 'forking',
+    timeoutstartsec => '1m',
+  }
+
   concat { '/etc/bacula/bacula-fd.conf':
     ensure  => 'present',
     owner   => 'root',
