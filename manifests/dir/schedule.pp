@@ -37,5 +37,6 @@ define bacula::dir::schedule(
     group   => 'root',
     mode    => '0640',
     content => template("${module_name}/dir/schedule.erb"),
+    notify  => Class['::bacula::dir::service'],
   }
 }

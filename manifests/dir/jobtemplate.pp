@@ -51,5 +51,6 @@ define bacula::dir::jobtemplate (
     group   => 'root',
     mode    => '0640',
     content => template("${module_name}/dir/job.erb"),
+    notify  => Class['::bacula::dir::service'],
   }
 }

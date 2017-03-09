@@ -35,5 +35,6 @@ define bacula::dir::storage (
     group   => 'root',
     mode    => '0640',
     content => template("${module_name}/dir/storage.erb"),
+    notify  => Class['::bacula::dir::service'],
   }
 }

@@ -16,6 +16,6 @@ define bacula::sd::director (
   concat::fragment{ "/etc/bacula/bacula-sd.conf director ${director_name}":
     target  => '/etc/bacula/bacula-sd.conf',
     order   => '90',
-    content => template("${module_name}/fd/director.erb"),
+    content => template("${module_name}/sd/director.erb"),
   }
 }

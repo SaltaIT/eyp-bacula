@@ -11,7 +11,7 @@
 define bacula::dir::client(
                             $catalog,
                             $addr,
-                            $password,
+                            $password       = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
                             $client_name    = $name,
                             $description    = undef,
                             $port           = '9102',
@@ -37,5 +37,6 @@ define bacula::dir::client(
     group   => 'root',
     mode    => '0640',
     content => template("${module_name}/dir/client.erb"),
+    notify  => Class['::bacula::dir::service'],
   }
 }

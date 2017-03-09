@@ -68,5 +68,6 @@ define bacula::dir::fileset (
     group   => 'root',
     mode    => '0640',
     content => template("${module_name}/dir/fileset.erb"),
+    notify  => Class['::bacula::dir::service'],
   }
 }
