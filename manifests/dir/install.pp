@@ -8,6 +8,16 @@ class bacula::dir::install inherits bacula::dir {
     }
   }
 
+  if($bacula::dir::setup_mysql)
+  {
+    mysql::community::instance { 'bacula':
+      port              => '3306',
+      password          => $bacula::dir::root_db_password,
+      add_default_mycnf => true,
+      default_instance  => true,
+    }
+  }
+
   # root@ubuntu16:/etc/bacula/scripts# ls -ld /etc/bacula
   # drwxr-xr-x 4 root root 4096 Mar  8 17:10 /etc/bacula
 

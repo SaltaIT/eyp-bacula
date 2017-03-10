@@ -23,6 +23,8 @@ class bacula::dir (
                     $operator_subject            = 'Bacula: Intervention needed for %j',
                     $daemon_subject              = 'Bacula daemon message',
                     $debug_level                 = undef,
+                    $setup_mysql                 = true,
+                    $root_db_password            = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
                   ) inherits bacula::params {
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
