@@ -23,7 +23,7 @@ define bacula::dir::jobtemplate (
                                   $level          = undef,
                                   $client         = undef,
                                   $fileset        = undef,
-                                  $schedule       = undef,
+                                  $scheduled      = undef,
                                   $storage        = undef,
                                   $pool           = undef,
                                   $spool_data     = false,
