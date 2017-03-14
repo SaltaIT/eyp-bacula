@@ -19,5 +19,5 @@ class bacula::sd (
   class { '::bacula::sd::install': } ->
   class { '::bacula::sd::config': } ~>
   class { '::bacula::sd::service': } ->
-  Class['::bacula::fd']
+  Class['::bacula::sd']
 }
