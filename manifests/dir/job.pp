@@ -1,5 +1,6 @@
 define bacula::dir::job (
                           $job_name       = $name,
+                          $jobdefs        = undef,
                           $type           = 'Backup',
                           $level          = undef,
                           $client         = undef,

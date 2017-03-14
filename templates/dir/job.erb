@@ -1,5 +1,8 @@
 <%= @job_type %> {
   Name = "<%= @job_name %>"
+  <% if defined?(@jobdefs) -%>
+  JobDefs = "<%= @jobdefs %>"
+  <% end -%>
   Type = <%= @type %>
   <%- if defined?(@level) -%>
   Level = <%= @level %>
