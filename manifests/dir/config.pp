@@ -16,7 +16,7 @@ class bacula::dir::config inherits bacula::dir {
       execstartpost   => '/etc/bacula/scripts/wait-for-bacula-pid.sh -d dir',
       type            => 'forking',
       timeoutstartsec => '1m',
-    }  
+    }
   }
 
   concat { '/etc/bacula/bacula-dir.conf':
@@ -116,7 +116,7 @@ class bacula::dir::config inherits bacula::dir {
     if(defined(Class['::logrotate']))
     {
       logrotate::logs { 'baculalog':
-        ensure       => $bacula::dir::baculalog_rotate,
+        ensure       => $bacula::dir::baculalog_logrotate_ensure,
         log          => $bacula::dir::bacula_log,
         compress     => true,
         copytruncate => true,
