@@ -12,14 +12,14 @@ class bacula::sd::config inherits bacula::sd {
       pid_file        => "/var/run/bacula/bacula-sd.${bacula::sd::port}.pid",
       type            => 'forking',
       timeoutstartsec => '1m',
-    }  
+    }
   }
 
   concat { '/etc/bacula/bacula-sd.conf':
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0640',
   }
 
   concat::fragment{ '/etc/bacula/bacula-sd.conf base conf':
@@ -31,7 +31,7 @@ class bacula::sd::config inherits bacula::sd {
   if($bacula::sd::director_name!=undef)
   {
     bacula::sd::director { $bacula::sd::director_name:
-      password => $bacula::sd::director_password,
+      password    => $bacula::sd::director_password,
       description => "default director",
     }
   }

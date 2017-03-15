@@ -11,14 +11,14 @@ class bacula::fd::config inherits bacula::fd {
       pid_file        => "/var/run/bacula/bacula-fd.${bacula::fd::port}.pid",
       type            => 'forking',
       timeoutstartsec => '1m',
-    }  
+    }
   }
 
   concat { '/etc/bacula/bacula-fd.conf':
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0640',
   }
 
   concat::fragment{ '/etc/bacula/bacula-fd.conf base conf':
@@ -30,7 +30,7 @@ class bacula::fd::config inherits bacula::fd {
   if($bacula::fd::director_name!=undef)
   {
     bacula::fd::director { $bacula::fd::director_name:
-      password => $bacula::fd::director_password,
+      password    => $bacula::fd::director_password,
       description => "default director",
     }
   }
