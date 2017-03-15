@@ -11,7 +11,7 @@ class bacula::dir::config inherits bacula::dir {
     # /usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula
     # /var/run/bacula/bacula-dir.9101.pid
     systemd::service { 'bacula-director':
-      execstart       => inline_template("/usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula<% if defined?(@debug_level) %> -d <%= @debug_level %><% end %>"),
+      execstart       => inline_template('/usr/sbin/bacula-dir -c /etc/bacula/bacula-dir.conf -u bacula -g bacula<% if defined?(@debug_level) %> -d <%= @debug_level %><% end %>'),
       pid_file        => "/var/run/bacula/bacula-dir.${bacula::dir::port}.pid",
       execstartpost   => '/etc/bacula/scripts/wait-for-bacula-pid.sh -d dir',
       type            => 'forking',
