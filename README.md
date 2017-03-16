@@ -141,6 +141,95 @@ bacula::sd::autochanger { 'autochanger1':
 }
 ```
 
+bacula director using hiera:
+
+```yaml
+---
+classes:
+  - bacula::sd
+  - bacula::dir
+  - bacula::bconsole
+
+mysql::mysql_username_uid: 116
+mysql::mysql_username_gid: 125
+
+xtrabackup:
+  'bacula':
+    hour: '3'
+    minute: '0'
+    destination: '/var/mysql/backup'
+    retention: '5'
+
+bacula::dir::director_password: 'passw0rd'
+bacula::sd::director_password: 'passw0rd'
+bacula::bconsole::director_password: 'passw0rd'
+
+baculasddevices:
+  data1:
+    archive_device: '/var/bacula/data1'
+
+baculadircatalogs:
+  mycatalog:
+    dbpassword: 'dbpassw0rd'
+
+baculadirfilesets:
+  log_etc_cron: {}
+  log_etc_cron_xtrabackup:
+    includelist:
+      - '/var/log'
+      - '/etc'
+      - 'var/spool/cron'
+      - '/var/mysql/backup'
+
+baculadirschedules:
+  weekly:
+    run:
+      - 'Full 1st sun at 03:00'
+      - 'Incremental mon-sat at 03:00'
+
+baculadirclients:
+  'EF-BaculaDir01':
+    addr: '127.0.0.1'
+    catalog: mycatalog
+
+baculadirstorages:
+  localdata:
+    password: 'passw0rd'
+    device: 'data1'
+
+baculadirpools:
+  30days:
+    volume_retention: '30 days'
+    label_format: '30days-'
+
+baculadirjobtemplates:
+  'defaultjob':
+    fileset: 'log_etc_cron'
+    scheduled: weekly
+    storage: localdata
+    pool: '30days'
+  'defaultjobdb':
+    fileset: 'log_etc_cron_xtrabackup'
+    scheduled: weekly
+    storage: localdata
+    pool: '30days'
+
+baculadirjobs:
+  'EF-BaculaDir01':
+    jobdefs: 'defaultjobdb'
+    client: 'EF-BaculaDir01'
+```
+
+bacula client using hiera:
+
+```yaml
+---
+classes:
+  - bacula::fd
+
+bacula::fd::director_password: passw0rd
+```
+
 ## Reference
 
 Here, list the classes, types, providers, facts, etc contained in your module.
