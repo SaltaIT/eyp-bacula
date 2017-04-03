@@ -20,10 +20,10 @@ class bacula::dir::config inherits bacula::dir {
   }
 
   concat { '/etc/bacula/bacula-dir.conf':
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0640',
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0640',
   }
 
   file { '/etc/bacula/bacula-dir':
