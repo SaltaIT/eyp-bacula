@@ -9,7 +9,7 @@ class bacula::bconsole(
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
 
-  class { '::bacula::bconsole::install': } ->
-  class { '::bacula::bconsole::config': } ->
-  Class['::bacula::bconsole']
+  class { '::bacula::bconsole::install': }
+  -> class { '::bacula::bconsole::config': }
+  -> Class['::bacula::bconsole']
 }

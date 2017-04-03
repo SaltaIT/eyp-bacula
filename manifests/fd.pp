@@ -17,8 +17,8 @@ class bacula::fd (
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
 
-  class { '::bacula::fd::install': } ->
-  class { '::bacula::fd::config': } ~>
-  class { '::bacula::fd::service': } ->
-  Class['::bacula::fd']
+  class { '::bacula::fd::install': }
+  -> class { '::bacula::fd::config': }
+  ~> class { '::bacula::fd::service': }
+  -> Class['::bacula::fd']
 }

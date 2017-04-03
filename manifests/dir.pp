@@ -29,8 +29,8 @@ class bacula::dir (
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
 
-  class { '::bacula::dir::install': } ->
-  class { '::bacula::dir::config': } ~>
-  class { '::bacula::dir::service': } ->
-  Class['::bacula::dir']
+  class { '::bacula::dir::install': }
+  -> class { '::bacula::dir::config': }
+  ~> class { '::bacula::dir::service': }
+  -> Class['::bacula::dir']
 }

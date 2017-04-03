@@ -16,8 +16,8 @@ class bacula::sd (
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
 
-  class { '::bacula::sd::install': } ->
-  class { '::bacula::sd::config': } ~>
-  class { '::bacula::sd::service': } ->
-  Class['::bacula::sd']
+  class { '::bacula::sd::install': }
+  -> class { '::bacula::sd::config': }
+  ~> class { '::bacula::sd::service': }
+  -> Class['::bacula::sd']
 }
