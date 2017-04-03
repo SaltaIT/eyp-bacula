@@ -2,7 +2,7 @@
   "name": "eyp-bacula",
   "version": "0.1.0",
   "author": "eyp",
-  "summary": null,
+  "summary": "bacula client (fd) and server (dir and sd) management",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-bacula",
   "project_page": null,
