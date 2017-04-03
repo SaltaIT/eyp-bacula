@@ -24,9 +24,13 @@ class bacula::params {
     {
       case $::operatingsystemrelease
       {
-        /^[5-7].*$/:
+        /^[5-6].*$/:
         {
-          fail('not supported so far')
+          $systemd=false
+        }
+        /^7.*$/:
+        {
+          $systemd=true
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
       }
