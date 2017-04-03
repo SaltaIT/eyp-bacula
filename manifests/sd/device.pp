@@ -16,7 +16,6 @@ define bacula::sd::device (
                             $mkdir_archive_device = true,
                             $device_name          = $name,
                             $description          = undef,
-                            $max_concurrent_jobs  = '20',
                             $media_type           = "File-${::fqdn}",
                             $device_type          = 'File',
                             $label_media          = true,
