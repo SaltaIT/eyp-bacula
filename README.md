@@ -188,6 +188,7 @@ baculadirclients:
   'EF-BaculaDir01':
     addr: '127.0.0.1'
     catalog: mycatalog
+    password: 'passw0rd'
 
 baculadirstorages:
   localdata:
