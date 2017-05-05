@@ -314,17 +314,133 @@ bacula command-line console
 
 ### defines
 
+#### director
+
+##### bacula::dir::catalog
+
+* **dbpassword**:,
+* **catalog_name**:         = $name,
+* **dbname**:               = 'bacula',
+* **dbuser**:               = 'bacula',
+* **$dbsocket**:             = '/var/mysql/bacula/mysqld.sock',
+* **dbaddress**:            = undef,
+* **dbport**:               = undef,
+* **create_db_and_tables**: = true
+
+##### bacula::dir::client
+
+* **catalog**:,
+* **addr**:,
+* **password**:       = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+* **client_name**:    = $name,
+* **description**:    = undef,
+* **port**:           = '9102',
+* **file_retention**: = '30 days',
+* **job_retention**:
+
+##### bacula::dir::fileset
+
+* **fileset_name**: = $name,
+* **includelist**: = [ '/var/log', '/etc', '/var/spool/cron' ],
+* **excludelist**: = [ '/', '/dev', '/sys', '/proc' ],
+* **signature**:   = 'MD5',
+* **gzip**:        = false,
+* **gzip_level**:  = '6',
+* **onefs**:       = false,
+* **aclsupport**:  = false,
+
+##### bacula::dir::job
+
+* **job_name**:       = $name,
+* **jobdefs**:        = undef,
+* **type**:           = 'Backup',
+* **level**:          = undef,
+* **client**:         = undef,
+* **fileset**:        = undef,
+* **scheduled**:      = undef,
+* **storage**:        = undef,
+* **pool**:           = undef,
+* **spool_data**:     = false,
+* **priority**:       = undef,
+* **run_before_job**: = undef,
+* **run_after_job**:  = undef,
+* **write_bootstrap**: = '/var/lib/bacula/%c.bsr',
+
+##### bacula::dir::jobtemplate
+
+* **job_name**:       = $name,
+* **type**:           = 'Backup',
+* **level**:          = undef,
+* **client**:         = undef,
+* **fileset**:        = undef,
+* **scheduled**:      = undef,
+* **storage**:        = undef,
+* **pool**:           = undef,
+* **spool_data**:     = false,
+* **priority**:       = undef,
+* **run_before_job**: = undef,
+* **run_after_job**:  = undef,
+* **write_bootstrap**: = '/var/lib/bacula/%c.bsr',
+
+##### bacula::dir::pool
+
+* **pool_name**:           = $name,
+* **pool_type**:           = 'Backup',
+* **recycle**:             = undef,
+* **autoprune**:           = undef,
+* **volume_retention**:    = undef,
+* **maximum_volume_size**: = undef,
+* **maximum_volumes**:     = undef,
+* **label_format**:        = undef,
+* **description**:         = undef,
+
+##### bacula::dir::schedule
+
+* **run**:,
+* **schedule_name**: = $name,
+* **description**:   = undef,
+
+##### bacula::dir::storage
+
+* **password**:,
+* **device**:,
+* **storage_name**:        = $name,
+* **addr**:                = '127.0.0.1',
+* **sd_port**:             = '9103',
+* **media_type**:          = "File-${::fqdn}",
+* **max_concurrent_jobs**: = '20',
+* **description**:         = undef,
+
 #### storage daemon
+
+##### bacula::sd::autochanger
+
+* **devices**:,
+* **autochanger_name**: = $name,
+* **command**:          = '',
+* **device**:           = '/dev/null',
+* **description**:      = undef,
+
+##### bacula::sd::director
+
+* **password**:,
+* **director_name**: = $name,
+* **monitor**:       = false,
+* **description**:   = undef,
 
 #### file daemon
 
 ##### bacula::fd::director
 
-#### director
+* **password**:,
+* **director_name**: = $name,
+* **monitor**:       = false,
+* **description**:   = undef,
+
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Tested on Ubuntu 14.04 and Ubuntu 16.04
 
 ## Development
 
