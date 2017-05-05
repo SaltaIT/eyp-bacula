@@ -232,17 +232,85 @@ bacula::fd::director_password: passw0rd
 
 ### classes
 
-#### bacula
+#### bacula::fd
 
-This class is just a placeholder
+bacula file daemon (client)
+
+* **manage_package**:        = true,
+* **package_ensure**:        = 'installed',
+* **manage_service**:        = true,
+* **manage_docker_service**: = true,
+* **service_ensure**:        = 'running',
+* **service_enable**:        = true,
+* **port**:                  = '9102',
+* **fdname**:                = $::fqdn,
+* **director_name**:         = $::fqdn,
+* **director_password**:     = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+* **max_concurrent_jobs**:   = '20',
+* **plugin_dir**:            = undef,
+* **fdaddr**:                = undef,
+* **debug_level**:           = undef,
 
 #### bacula::dir
 
+bacula director
+
+* **manage_package**:              = true,
+* **package_ensure**:              = 'installed',
+* **manage_service**:              = true,
+* **manage_docker_service**:       = true,
+* **service_ensure**:              = 'running',
+* **service_enable**:              = true,
+* **director_name**:               = $::fqdn,
+* **max_concurrent_jobs**:         = '20',
+* **director_password**:           = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+* **port**:                        = '9101',
+* **diraddr**:                     = undef,
+* **bacula_log**:                  = '/var/log/bacula/bacula.log',
+* **baculalog_frequency**:         = 'daily',
+* **baculalog_rotate**:            = '15',
+* **baculalog_size**:              = '100M',
+* **baculalog_logrotate_ensure**:  = 'present',
+* **mail_from**:                   = "bacula@${::fqdn}",
+* **mailto_notification**:         = "bacula@${::fqdn}",
+* **mailto_operator**:             = "bacula@${::fqdn}",
+* **mailto_daemon_notifications**: = "bacula@${::fqdn}",
+* **notification_subject**:        = 'Bacula: %t %e of %c %l',
+* **operator_subject**:            = 'Bacula: Intervention needed for %j',
+* **daemon_subject**:              = 'Bacula daemon message',
+* **debug_level**:                 = undef,
+* **setup_mysql**:                 = true,
+* **root_db_password**:            = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+
+
 #### bacula::sd
 
-#### bacula::fd
+bacula storage daemon
+
+* **manage_package**:        = true,
+* **package_ensure**:        = 'installed',
+* **manage_service**:        = true,
+* **manage_docker_service**: = true,
+* **service_ensure**:        = 'running',
+* **service_enable**:        = true,
+* **sdname**:                = $::fqdn,
+* **port**:                  = '9103',
+* **max_concurrent_jobs**:   = '20',
+* **sdaddr**:                = undef,
+* **director_name**:         = $::fqdn,
+* **director_password**:     = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+* **debug_level**:           = undef,
 
 #### bacula::bconsole
+
+bacula command-line console
+
+* **manage_package**:    = true,
+* **package_ensure**:    = 'installed',
+* **director_name**:     = $::fqdn,
+* **director_password**: = 'dmlzY2EgY2F0YWx1bnlhIGxsaXVyZQo',
+* **director_port**:     = '9101',
+* **director_address**:  = '127.0.0.1',
 
 ### defines
 
