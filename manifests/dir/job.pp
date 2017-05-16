@@ -3,7 +3,7 @@ define bacula::dir::job (
                           $jobdefs        = undef,
                           $type           = 'Backup',
                           $level          = undef,
-                          $client         = undef,
+                          $client         = $name,
                           $fileset        = undef,
                           $scheduled      = undef,
                           $storage        = undef,
