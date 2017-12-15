@@ -14,6 +14,8 @@ define bacula::dir::pool(
                           $recycle             = undef,
                           $autoprune           = undef,
                           $volume_retention    = undef,
+                          $job_retention       = undef,
+                          $file_retention      = undef,
                           $maximum_volume_size = undef,
                           $maximum_volumes     = undef,
                           $label_format        = undef,
