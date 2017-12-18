@@ -2,7 +2,8 @@
 
 ## 0.1.2
 
-* added to Pool definition:
+* added **spool_attributes** option to **Job definition
+* added to **Pool** definition:
   - File and Job retentions
   - action_on_purge
   - volume_use_duration

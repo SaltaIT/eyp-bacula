@@ -24,6 +24,7 @@
   Pool = <%= @pool %>
   <%- end -%>
   Spool Data = <%= scope.function_bool2yesno([@spool_data]) %>
+  Spool Attributes = <%= scope.function_bool2yesno([@spool_attributes]) %>
   <%- if defined?(@priority) -%>
   Priority = <%= @priority %>
   <%- end -%>
