@@ -31,4 +31,10 @@ Pool {
   <%- if defined?(@label_format) -%>
   Label Format = "<%= @label_format %>"
   <%- end -%>
+  <%- if defined?(@action_on_purge) -%>
+  Action On Purge = <%= @action_on_purge %>
+  <%- end -%>
+  <%- if defined?(@volume_use_duration) -%>
+  Volume Use Duration = <%= @volume_use_duration %>
+  <%- end -%>
 }

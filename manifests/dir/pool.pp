@@ -8,6 +8,8 @@
 # Maximum Volume Bytes = 50G          # Limit Volume size to something reasonable
 # Maximum Volumes = 100               # Limit number of Volumes in Pool
 # Label Format = "Vol-"               # Auto label
+# Action On Purge = Truncate          # Allow to truncate volume
+# Volume Use Duration = 14h           # Force volume switch
 define bacula::dir::pool(
                           $pool_name           = $name,
                           $pool_type           = 'Backup',
@@ -20,6 +22,8 @@ define bacula::dir::pool(
                           $maximum_volumes     = undef,
                           $label_format        = undef,
                           $description         = undef,
+                          $action_on_purge     = undef,
+                          $volume_use_duration = undef,
                         ) {
 
   if(!defined(Concat::Fragment['bacula-dir.conf pools includes']))

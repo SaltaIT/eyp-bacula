@@ -2,7 +2,10 @@
 
 ## 0.1.2
 
-* added File and Job retentions to Pool definition
+* added to Pool definition:
+  - File and Job retentions
+  - action_on_purge
+  - volume_use_duration
 
 ## 0.1.1
 
