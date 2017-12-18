@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.4
+
+* safer defaults for job definitions
+
 ## 0.1.3
 
 * added **spool_attributes** to **bacula::dir::jobtemplate**

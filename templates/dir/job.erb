@@ -1,8 +1,8 @@
 <%= @job_type %> {
   Name = "<%= @job_name %>"
-  <% if defined?(@jobdefs) -%>
+  <%- if defined?(@jobdefs) -%>
   JobDefs = "<%= @jobdefs %>"
-  <% end -%>
+  <%- end -%>
   Type = <%= @type %>
   <%- if defined?(@level) -%>
   Level = <%= @level %>
@@ -23,8 +23,12 @@
   <%- if defined?(@pool) -%>
   Pool = <%= @pool %>
   <%- end -%>
+  <%- if defined?(@spool_data) -%>
   Spool Data = <%= scope.function_bool2yesno([@spool_data]) %>
+  <%- end -%>
+  <%- if defined?(@spool_attributes) -%>
   Spool Attributes = <%= scope.function_bool2yesno([@spool_attributes]) %>
+  <%- end -%>
   <%- if defined?(@priority) -%>
   Priority = <%= @priority %>
   <%- end -%>
