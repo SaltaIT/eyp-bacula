@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.3
+
+* added **spool_attributes** to **bacula::dir::jobtemplate**
+
 ## 0.1.2
 
 * added **spool_attributes** option to **Job** definition
