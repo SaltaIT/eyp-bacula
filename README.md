@@ -106,8 +106,153 @@ bacula::dir::job { 'demo':
 class { 'bacula::bconsole': }
 ```
 
-
 ## Usage
+
+### full bacula director and SD setup:
+
+```yaml
+---
+classes:
+  - bacula::sd
+  - bacula::dir
+  - bacula::bconsole
+
+mysql::mysql_username_uid: 116
+mysql::mysql_username_gid: 125
+
+xtrabackup:
+  'bacula':
+    hour: '3'
+    minute: '0'
+    destination: '/var/mysql/backup'
+    mailto: 'backups@backups.systemadmin.es'
+    retention: '5'
+
+bacula::dir::director_password: 'dm90YSBDVVAgMjFECg'
+bacula::sd::director_password: 'dm90YSBDVVAgMjFECg'
+bacula::bconsole::director_password: 'dm90YSBDVVAgMjFECg'
+
+baculasddevices:
+  data1:
+    archive_device: '/var/bacula/data1'
+
+baculadircatalogs:
+  mycatalog:
+    dbpassword: 'RDEyIFBVQyBhdG92Cg'
+
+baculadirfilesets:
+  log_etc_cron: {}
+  log_etc_cron_www:
+    includelist:
+      - '/var/www'
+      - '/var/log'
+      - '/etc'
+      - 'var/spool/cron'
+  log_etc_cron_xtrabackup:
+    includelist:
+      - '/var/log'
+      - '/etc'
+      - 'var/spool/cron'
+      - '/var/mysql/backup'
+
+baculadirschedules:
+  weekly:
+    run:
+      - 'Full sun at 03:00'
+      - 'Incremental mon-sat at 03:00'
+
+baculadirclients:
+  'inf-baculadir01':
+    addr: '127.0.0.1'
+    catalog: 'mycatalog'
+    password: 'dm90YSBDVVAgMjFECg'
+  'inf-mysqlndb03':
+    addr: '10.12.150.6'
+    catalog: 'mycatalog'
+    password: 'dm90YSBDVVAgMjFECg'
+  'inf-tricia01':
+    addr: '10.12.150.72'
+    catalog: 'mycatalog'
+    password: 'dm90YSBDVVAgMjFECg'
+  'inf-marta02':
+    addr: '10.12.150.71'
+    catalog: 'mycatalog'
+    password: 'dm90YSBDVVAgMjFECg'
+  'inf-tracking01':
+    addr: '10.12.150.144'
+    catalog: 'mycatalog'
+    password: 'dm90YSBDVVAgMjFECg'
+  'inf-push01':
+    addr: '10.12.150.142'
+    catalog: 'mycatalog'
+    password: 'dm90YSBDVVAgMjFECg'
+
+baculadirstorages:
+  localdata:
+    addr: '10.12.150.1'
+    password: 'dm90YSBDVVAgMjFECg'
+    device: 'data1'
+  merchdata:
+    addr: '10.12.150.65'
+    password: 'dm90YSBDVVAgMjFECg'
+    device: 'data1'
+  ticketingdata:
+    addr: '10.12.150.129'
+    password: 'dm90YSBDVVAgMjFECg'
+    device: 'data1'
+
+baculadirpools:
+  30days:
+    volume_retention: '30 days'
+    label_format: '30days-'
+    recycle: 'yes'
+    autoprune: 'yes'
+    # 2T / 5G = 400 volums
+    maximum_volume_size: '5G'
+    maximum_volumes: '400'
+    volume_use_duration: '240h'
+
+baculadirjobtemplates:
+  'defaultjob':
+    fileset: 'log_etc_cron'
+    scheduled: weekly
+    storage: localdata
+    pool: '30days'
+  'defaultjob_db':
+    fileset: 'log_etc_cron_xtrabackup'
+    scheduled: weekly
+    storage: localdata
+    pool: '30days'
+  'defaultjob_www':
+    fileset: 'log_etc_cron_www'
+    scheduled: weekly
+    storage: localdata
+    pool: '30days'
+
+baculadirjobs:
+  'inf-baculadir01':
+    jobdefs: 'defaultjob_db'
+    spool_attributes: true
+  'inf-mysqlndb03':
+    jobdefs: 'defaultjob_db'
+    spool_attributes: true
+  'inf-marta02':
+    jobdefs: 'defaultjob_www'
+    spool_attributes: true
+    storage: 'merchdata'
+  'inf-tricia01':
+    jobdefs: 'defaultjob_www'
+    spool_attributes: true
+    storage: 'merchdata'
+  'inf-push01':
+    jobdefs: 'defaultjob_www'
+    spool_attributes: true
+    storage: 'ticketingdata'
+  'inf-tracking01':
+    jobdefs: 'defaultjob_www'
+    spool_attributes: true
+    storage: 'ticketingdata'
+```
 
 ### bacula-fd
 
@@ -138,87 +283,7 @@ bacula::sd::autochanger { 'autochanger1':
 }
 ```
 
-bacula director using hiera:
-
-```yaml
----
-classes:
-  - bacula::sd
-  - bacula::dir
-  - bacula::bconsole
-
-mysql::mysql_username_uid: 116
-mysql::mysql_username_gid: 125
-
-xtrabackup:
-  'bacula':
-    hour: '3'
-    minute: '0'
-    destination: '/var/mysql/backup'
-    retention: '5'
-
-bacula::dir::director_password: 'passw0rd'
-bacula::sd::director_password: 'passw0rd'
-bacula::bconsole::director_password: 'passw0rd'
-
-baculasddevices:
-  data1:
-    archive_device: '/var/bacula/data1'
-
-baculadircatalogs:
-  mycatalog:
-    dbpassword: 'dbpassw0rd'
-
-baculadirfilesets:
-  log_etc_cron: {}
-  log_etc_cron_xtrabackup:
-    includelist:
-      - '/var/log'
-      - '/etc'
-      - 'var/spool/cron'
-      - '/var/mysql/backup'
-
-baculadirschedules:
-  weekly:
-    run:
-      - 'Full 1st sun at 03:00'
-      - 'Incremental mon-sat at 03:00'
-
-baculadirclients:
-  'EF-BaculaDir01':
-    addr: '127.0.0.1'
-    catalog: mycatalog
-    password: 'passw0rd'
-
-baculadirstorages:
-  localdata:
-    password: 'passw0rd'
-    device: 'data1'
-
-baculadirpools:
-  30days:
-    volume_retention: '30 days'
-    label_format: '30days-'
-
-baculadirjobtemplates:
-  'defaultjob':
-    fileset: 'log_etc_cron'
-    scheduled: weekly
-    storage: localdata
-    pool: '30days'
-  'defaultjobdb':
-    fileset: 'log_etc_cron_xtrabackup'
-    scheduled: weekly
-    storage: localdata
-    pool: '30days'
-
-baculadirjobs:
-  'EF-BaculaDir01':
-    jobdefs: 'defaultjobdb'
-    client: 'EF-BaculaDir01'
-```
-
-bacula client using hiera:
+### bacula client
 
 ```yaml
 ---
