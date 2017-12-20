@@ -6,5 +6,4 @@ class bacula::fd::install inherits bacula::fd {
       ensure => $bacula::fd::package_ensure,
     }
   }
-
 }

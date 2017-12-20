@@ -6,5 +6,4 @@ class bacula::bconsole::install inherits bacula::bconsole {
       ensure => $bacula::bconsole::package_ensure,
     }
   }
-
 }

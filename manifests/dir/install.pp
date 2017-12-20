@@ -64,5 +64,4 @@ class bacula::dir::install inherits bacula::dir {
     group  => 'bacula',
     mode   => '0700',
   }
-
 }

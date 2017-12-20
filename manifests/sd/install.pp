@@ -6,5 +6,4 @@ class bacula::sd::install inherits bacula::sd {
       ensure => $bacula::sd::package_ensure,
     }
   }
-
 }

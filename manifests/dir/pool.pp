@@ -45,5 +45,4 @@ define bacula::dir::pool(
     content => template("${module_name}/dir/pool.erb"),
     notify  => Class['::bacula::dir::service'],
   }
-
 }
