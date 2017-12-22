@@ -19,6 +19,9 @@
 
 bacula client and server services management
 
+![learning curve](learning_curve.png "learning curve")
+
+
 ## Module Description
 
 You can manage 4 different services:
