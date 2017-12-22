@@ -19,7 +19,7 @@
 
 bacula client and server services management
 
-![learning curve](learning_curve.png "learning curve")
+![learning curve](docs/learning_curve.png "learning curve")
 
 
 ## Module Description
@@ -46,7 +46,17 @@ This module requires pluginsync enabled
 
 ### Beginning with bacula
 
-![bacula schema](http://www.bacula.org/7.4.x-manuals/en/images/Conf-Diagram.png "bacula schema")
+#### bacula diagram
+
+![bacula diagram](docs/conf_diagram.png "bacula diagram")
+source: [http://www.bacula.org]
+
+#### bacula relations
+
+![bacula relations](docs/bacula_relations.png "bacula relations")
+source: [http://http://wiki.defcon.no]
+
+#### example config
 
 ```puppet
 class { 'bacula::fd':
