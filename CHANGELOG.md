@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.6
+
+* added Ubuntu 18.04 and RHEL 8 support
+
 ## 0.1.5
 
 * Updated metadata for **eyp-systemd 0.2.0**

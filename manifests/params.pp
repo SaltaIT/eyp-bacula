@@ -28,7 +28,7 @@ class bacula::params {
         {
           $systemd=false
         }
-        /^7.*$/:
+        /^[78].*$/:
         {
           $systemd=true
         }
@@ -47,7 +47,7 @@ class bacula::params {
             {
               $systemd=false
             }
-            /^16.*$/:
+            /^1[68].*$/:
             {
               $systemd=true
             }
