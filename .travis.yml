@@ -1,6 +1,11 @@
 ---
+dist: bionic
 language: ruby
+cache: bundler
 sudo: required
+before_install:
+  - yes | gem update --system
+  - bundle --version
 services:
   - docker
 script:
