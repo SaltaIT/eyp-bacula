@@ -1,6 +1,6 @@
 {
   "name": "eyp-bacula",
-  "version": "0.1.6",
+  "version": "1.0.6",
   "author": "Jordi Prats",
   "summary": "bacula client (fd) and server (dir and sd) management",
   "license": "Apache-2.0",
